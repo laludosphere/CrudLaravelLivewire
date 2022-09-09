@@ -12,7 +12,7 @@ class StudentShow extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    public $name, $email, $course, $student_id;
+    public $name, $email, $course, $student_id, $mobile;
     public $search = '';
 
     protected function rules()
@@ -21,6 +21,7 @@ class StudentShow extends Component
             'name' => 'required|string|min:6',
             'email' => ['required', 'email'],
             'course' => 'required|string',
+            'mobile' => 'required|string|min:10'
         ];
     }
 
@@ -39,6 +40,20 @@ class StudentShow extends Component
         $this->dispatchBrowserEvent('close-modal');
     }
 
+    public function showStudent(int $student_id)
+    {
+        $student = Student::find($student_id);
+        if ($student) {
+            $this->student_id = $student->id;
+            $this->name = $student->name;
+            $this->email = $student->email;
+            $this->mobile = $student->mobile;
+            $this->course = $student->course;
+        } else {
+            return redirect()->to('/students');
+        }
+    }
+
     public function editStudent(int $student_id)
     {
         $student = Student::find($student_id);
@@ -47,6 +62,7 @@ class StudentShow extends Component
             $this->student_id = $student->id;
             $this->name = $student->name;
             $this->email = $student->email;
+            $this->mobile = $student->email;
             $this->course = $student->course;
         } else {
             return redirect()->to('/students');
@@ -60,6 +76,7 @@ class StudentShow extends Component
         Student::where('id', $this->student_id)->update([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
+            'mobile' => $validatedData['mobile'],
             'course' => $validatedData['course']
         ]);
         session()->flash('message', 'Student Updated Successfully');
@@ -89,11 +106,12 @@ class StudentShow extends Component
         $this->name = '';
         $this->email = '';
         $this->course = '';
+        $this->mobile = '';
     }
 
     public function render()
     {
-        $students = Student::where('name', 'like', '%' . $this->search . '%')->orderBy('id', 'DESC')->paginate(3);
+        $students = Student::where('name', 'like', '%' . $this->search . '%')->orderBy('id', 'DESC')->paginate(10);
         return view('livewire.student-show', ['students' => $students]);
     }
 }

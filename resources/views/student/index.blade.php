@@ -13,6 +13,7 @@
     window.addEventListener('close-modal', event => {
 
         $('#studentModal').modal('hide');
+        $('#showStudentModal').modal('hide');
         $('#updateStudentModal').modal('hide');
         $('#deleteStudentModal').modal('hide');
     })
