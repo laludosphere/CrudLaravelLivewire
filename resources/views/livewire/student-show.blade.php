@@ -12,7 +12,7 @@
                         <h4>Dashboard Studend
                             <input type="search" wire:model="search" class="form-control float-end mx-2" placeholder="Search..." style="width: 230px" />
                             <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#studentModal">
-                                Add New Student
+                                 <i class="fa-solid fa-plus" ></i>
                             </button>
                         </h4>
                     </div>
@@ -36,16 +36,10 @@
                                         <td>{{ $student->email }}</td>
                                         <td>{{ $student->mobile }}</td>
                                         <td>{{ $student->course }}</td>
-                                        <td>
-                                             <button type="button" data-bs-toggle="modal" data-bs-target="#showStudentModal" wire:click="showStudent({{$student->id}})" class="btn btn-primary">
-                                                Show
-                                            </button>
-                                            <button type="button" data-bs-toggle="modal" data-bs-target="#updateStudentModal" wire:click="editStudent({{$student->id}})" class="btn btn-primary">
-                                                Edit
-                                            </button>
-                                            <button type="button" data-bs-toggle="modal" data-bs-target="#deleteStudentModal" wire:click="deleteStudent({{$student->id}})" class="btn btn-danger">
-                                                Delete
-                                            </button>
+                                        <td>                          
+                                            <i class="fa-solid fa-eye" data-bs-toggle="modal" data-bs-target="#showStudentModal" wire:click="showStudent({{$student->id}})"></i>
+                                            <i class="fa-solid fa-pen-to-square" data-bs-toggle="modal" data-bs-target="#updateStudentModal" wire:click="editStudent({{$student->id}})"></i>                            
+                                            <i class="fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#deleteStudentModal" wire:click="deleteStudent({{$student->id}})"></i>
                                         </td>
                                     </tr>
                                 @empty
