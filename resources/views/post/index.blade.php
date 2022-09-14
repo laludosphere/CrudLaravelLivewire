@@ -1,13 +1,15 @@
+
 @extends('layouts.app')
+<div class="container">
+    @section('post')
 
-@section('post')
+        <div>
+            <livewire:posts>
+        </div>
 
-    <div>
-        <livewire:posts>
-    </div>
-
-@endsection
-
+    @endsection
+<div>
 @section('script')
 
 @endsection
+
