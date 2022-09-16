@@ -22,3 +22,6 @@ Auth::routes(['verify' => true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/student', [App\Http\Controllers\StudentController::class, 'index'])->name('student');
 Route::get('/post', [App\Http\Controllers\PostController::class, 'index'])->name('posts');
+Route::view('/datatable1', 'datatable1');
+Route::view('/datatable2', 'datatable2');
+Route::view('/datatable3', 'datatable3');
